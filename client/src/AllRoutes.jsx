@@ -9,6 +9,8 @@ import DisplayQuestion from "./Pages/Questions/DisplayQuestion";
 import Tags from "./Pages/Tags/Tags";
 import Users from "./Pages/Users/Users";
 import UserProfile from "./Pages/UserProfile/UserProfile";
+import Chatbot from "./Pages/Chatbot/Chatbot";
+import Subscribe from "./Pages/Subscribe/Subscribe";
 
 const AllRoutes = ({ slideIn, handleSlideIn }) => {
   return (
@@ -41,6 +43,18 @@ const AllRoutes = ({ slideIn, handleSlideIn }) => {
         path="/Users/:id"
         element={
           <UserProfile slideIn={slideIn} handleSlideIn={handleSlideIn} />
+        }
+      />
+      <Route
+        path="/chatbot"
+        element={
+          <Chatbot slideIn={slideIn} handleSlideIn={handleSlideIn} />
+        }
+      />
+      <Route
+        path="/subscribe"
+        element={
+          <Subscribe slideIn={slideIn} handleSlideIn={handleSlideIn} />
         }
       />
     </Routes>
