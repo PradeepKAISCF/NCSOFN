@@ -124,7 +124,7 @@ const Chatbot = ({ slideIn, handleSlideIn }) => {
   return (
     <div className="home-container-1">
       <LeftSidebar slideIn={slideIn} handleSlideIn={handleSlideIn} />
-      <div className="home-container-2" style={{overflow:'scroll'}}>
+      <div className="home-container-2">
         <h1>Chat With AI</h1>
         <div className="App">
           <div style={{ position:"relative",  }}>
