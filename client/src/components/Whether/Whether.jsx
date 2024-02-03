@@ -43,7 +43,7 @@ const Whether = () => {
   console.log(weatherData)
 
   return (
-    <div style={{marginTop:'60px',backgroundColor:'#edeff0',height:'20vh'}}>
+    <div style={{marginTop:'60px',backgroundColor:'#edeff0'}}>
       <div className="weather-container">
       {weatherData && (
         <>
