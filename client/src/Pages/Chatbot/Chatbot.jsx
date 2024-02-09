@@ -127,7 +127,7 @@ const Chatbot = ({ slideIn, handleSlideIn }) => {
       <div className="home-container-2" style={{}} >
         <h1>Chat With AI</h1>
         <div className="App">
-          <div style={{ position:"relative", height: "90vh"  }}>
+          <div style={{ position:"relative",  }}>
             <MainContainer style={{backgroundColor: 'yellow'}}>
               <ChatContainer>       
                 <MessageList 
