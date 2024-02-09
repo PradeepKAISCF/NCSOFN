@@ -42,11 +42,11 @@ const UserProfile = ({ slideIn, handleSlideIn }) => {
                 </p>
                 <p>
                   {currentProfile.subscrption=== 0 ?(
-                    <>Free Tier</>
+                    <>Subscribed to Free Tier</>
                   ): currentProfile.subscrption === 1?(
-                    <>Silver tier</>
+                    <>Subscribed to Silver tier</>
                   ):
-                  <>Golden Tier</>
+                  <>Subscribed to Golden Tier</>
                   }
                 </p>
               </div>
