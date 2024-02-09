@@ -1,15 +1,19 @@
 import React, {useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import './Subscribe.css'
-
+import { subscription } from "../../actions/users";
 
 const Subscribe = ({ slideIn, handleSlideIn }) => {
 
     const [plan,setplan] = useState(null);
+    const User = useSelector((state) => state.currentUserReducer);
+    const dispatch = useDispatch();
 
     const pay = (e)=>{
         e.preventDefault();
+        if(User){
         let amount;
         if(plan === 1) amount = 100
         if(plan === 2) amount = 1000
@@ -25,15 +29,15 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
               description:"for testing purpose",
               handler: function(response){
                 if(plan === 1){
-                  alert("Payment Successfull Now your a Premium User");
+                  alert("Payment Successfull Now your a free User");
                 }
                 if(plan === 2) {
                   alert("Payment Successfull Subscribed To Silver Plan");
-                  //dispatch(subscription(currentUser?.result?._id,1))
+                  dispatch(subscription(User?.result?._id,1))
                 }
                 if(plan === 3 ) {
                   alert("Payment Successfull Subscribed To Gold Plan");
-                  //dispatch(subscription(currentUser?.result?._id,2))
+                  dispatch(subscription(User?.result?._id,2))
                 }
     
               },
@@ -52,6 +56,9 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
             var pay = new window.Razorpay(options);
             pay.open();
           }
+        }else{
+          alert("Login to subscribe")
+        }
       }
 
   return (

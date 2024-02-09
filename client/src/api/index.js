@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://stack-overflow-eight.vercel.app/",
+  baseURL: "http://localhost:5000/",
 });
 
 API.interceptors.request.use((req) => {
@@ -31,3 +31,5 @@ export const deleteAnswer = (id, answerId, noOfAnswers) =>
 export const getAllUsers = () => API.get("/user/getAllUsers");
 export const updateProfile = (id, updateData) =>
   API.patch(`/user/update/${id}`, updateData);
+
+  export const subscribe = (id,value) => API.post(`subscribe/${id}`,{value})

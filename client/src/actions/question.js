@@ -6,6 +6,8 @@ export const askQuestion = (questionData, navigate) => async (dispatch) => {
     dispatch({ type: "POST_QUESTION", payload: data });
     dispatch(fetchAllQuestions());
     navigate("/");
+    if(data ==='0')alert('Upgrade ur Plan for Asking few more questions')
+    else{dispatch({type: "ADD_POINTS",payload:data})}
   } catch (error) {
     console.log(error);
   }
