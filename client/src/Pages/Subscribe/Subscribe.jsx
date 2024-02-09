@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useSelector } from "react-redux";
 
 import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import './Subscribe.css'
@@ -7,9 +8,11 @@ import './Subscribe.css'
 const Subscribe = ({ slideIn, handleSlideIn }) => {
 
     const [plan,setplan] = useState(null);
+    const User = useSelector((state) => state.currentUserReducer);
 
     const pay = (e)=>{
         e.preventDefault();
+        if(User){
         let amount;
         if(plan === 1) amount = 100
         if(plan === 2) amount = 1000
@@ -52,6 +55,9 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
             var pay = new window.Razorpay(options);
             pay.open();
           }
+        }else{
+          alert("Login to subscribe")
+        }
       }
 
   return (
