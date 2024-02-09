@@ -1,103 +1,93 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import { useSelector } from "react-redux";
 
-import "./AskQuestion.css";
-import { askQuestion } from "../../actions/question";
+import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
+import './Subscribe.css'
 
-const AskQuestion = () => {
-  const [questionTitle, setQuestionTitle] = useState("");
-  const [questionBody, setQuestionBody] = useState("");
-  const [questionTags, setQuestionTags] = useState("");
 
-  const dispatch = useDispatch();
-  const User = useSelector((state) => state.currentUserReducer);
-  const navigate = useNavigate();
+const Subscribe = ({ slideIn, handleSlideIn }) => {
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (User) {
-      if (questionTitle && questionBody && questionTags) {
-        dispatch(
-          askQuestion(
-            {
-              questionTitle,
-              questionBody,
-              questionTags,
-              userPosted: User.result.name,
-            },
-            navigate
-          )
-        );
-      } else alert("Please enter all the fields");
-    } else alert("Login to ask question");
-  };
+    const [plan,setplan] = useState(null);
+    const User = useSelector((state) => state.currentUserReducer);
 
-  const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      setQuestionBody(questionBody + "\n");
-    }
-  };
+    const pay = (e)=>{
+        e.preventDefault();
+        if(User){
+        let amount;
+        if(plan === 1) amount = 100
+        if(plan === 2) amount = 1000
+        if(plan === 0){
+          alert("Subrcibed To Free Plan");
+          }else{
+            var options = {
+              key: "rzp_test_7kuHOXieqQI1Go",
+              key_secret:"Cvseho95ZIwZBK8l5WJBGPlq",
+              amount: amount *100,
+              currency:"INR",
+              name:"STARTUP_PROJECTS",
+              description:"for testing purpose",
+              handler: function(response){
+                if(plan === 1){
+                  alert("Payment Successfull Now your a Premium User");
+                }
+                if(plan === 2) {
+                  alert("Payment Successfull Subscribed To Silver Plan");
+                  //dispatch(subscription(currentUser?.result?._id,1))
+                }
+                if(plan === 3 ) {
+                  alert("Payment Successfull Subscribed To Gold Plan");
+                  //dispatch(subscription(currentUser?.result?._id,2))
+                }
+    
+              },
+              prefill: {
+                name:"Naveen",
+                email:"sidehustle1702@gmail.com",
+                contact:"9003339441"
+              },
+              notes:{
+                address:"Razorpay Corporate office"
+              },
+              theme: {
+                color:"#3399cc"
+              }
+            };
+            var pay = new window.Razorpay(options);
+            pay.open();
+          }
+        }else{
+          alert("Login to subscribe")
+        }
+      }
+
   return (
-    <div className="ask-question">
-      <div className="ask-ques-container">
-        <h1>Ask a public Question</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="ask-form-container">
-            <label htmlFor="ask-ques-title">
-              <h4>Title</h4>
-              <p>
-                Be specific and imagine you’re asking a question to another
-                person
-              </p>
-              <input
-                type="text"
-                id="ask-ques-title"
-                onChange={(e) => {
-                  setQuestionTitle(e.target.value);
-                }}
-                placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-              />
-            </label>
-            <label htmlFor="ask-ques-body">
-              <h4>Body</h4>
-              <p>
-                Include all the information someone would need to answer your
-                question
-              </p>
-              <textarea
-                name=""
-                id="ask-ques-body"
-                onChange={(e) => {
-                  setQuestionBody(e.target.value);
-                }}
-                cols="30"
-                rows="10"
-                onKeyPress={handleEnter}
-              ></textarea>
-            </label>
-            <label htmlFor="ask-ques-tags">
-              <h4>Tags</h4>
-              <p>Add up to 5 tags to describe what your question is about</p>
-              <input
-                type="text"
-                id="ask-ques-tags"
-                onChange={(e) => {
-                  setQuestionTags(e.target.value.split(" "));
-                }}
-                placeholder="e.g. (xml typescript wordpress)"
-              />
-            </label>
-          </div>
-          <input
-            type="submit"
-            value="Reivew your question"
-            className="review-btn"
-          />
-        </form>
+    <div className="home-container-1">
+      <LeftSidebar slideIn={slideIn} handleSlideIn={handleSlideIn} />
+      <div className="home-container-2" >
+      <div className='main-container'>
+                <h1>Plans For Subscribe</h1>
+                <div className='plan-container'>
+                    <div className='plan-blocks' onClick={()=>{setplan(0)}} style={{borderColor: plan === 0 ? '#1e90ff' : 'black'}}>
+                        <h4> Free Plan</h4>
+                        <h5> Amount: Free</h5>
+                        <p>Only one questions Per Day</p>
+                    </div>
+                    <div className='plan-blocks' onClick={()=>{setplan(1)}} style={{borderColor: plan === 1 ? '#1e90ff' : 'black'}}>
+                        <h4> Silver Plan</h4>
+                        <h5> Amount: 100</h5>
+                        <p>Only 5 questions Per Day</p>
+                    </div>
+                    <div className='plan-blocks' onClick={()=>{setplan(2)}} style={{borderColor: plan === 2 ? '#1e90ff' : 'black'}}>
+                        <h4> Gold Plan</h4>
+                        <h5> Amount: 1000</h5>
+                        <p>Unlimited questions Per Day</p>
+                    </div>
+                </div>
+                <button className='pay-now' onClick={pay}>Pay now</button>   
+            </div>
       </div>
     </div>
   );
 };
 
-export default AskQuestion;
+export default Subscribe;
