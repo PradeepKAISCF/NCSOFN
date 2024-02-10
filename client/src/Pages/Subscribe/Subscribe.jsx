@@ -10,16 +10,19 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
     const [plan,setplan] = useState(null);
     const User = useSelector((state) => state.currentUserReducer);
     const dispatch = useDispatch();
+    console.log(User)
 
     const pay = (e)=>{
-        e.preventDefault();
+        if(User.result.subscription === plan){
+          alert('Your already subscribed to the same plan')
+        }else{
+          e.preventDefault();
         if(User){
         let amount;
         if(plan === 1) amount = 100
         if(plan === 2) amount = 1000
         if(plan === 0){
           alert("Subrcibed To Free Plan");
-          dispatch(subscription(User?.result?._id,2))
           }else{
             var options = {
               key: "rzp_test_7kuHOXieqQI1Go",
@@ -29,11 +32,14 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
               name:"STARTUP_PROJECTS",
               description:"for testing purpose",
               handler: function(response){
-                if(plan === 1) {
+                if(plan === 1){
+                  alert("Payment Successfull Now your a free User");
+                }
+                if(plan === 2) {
                   alert("Payment Successfull Subscribed To Silver Plan");
                   dispatch(subscription(User?.result?._id,1))
                 }
-                if(plan === 2 ) {
+                if(plan === 3 ) {
                   alert("Payment Successfull Subscribed To Gold Plan");
                   dispatch(subscription(User?.result?._id,2))
                 }
@@ -57,6 +63,8 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
         }else{
           alert("Login to subscribe")
         }
+        }
+        
       }
 
   return (
