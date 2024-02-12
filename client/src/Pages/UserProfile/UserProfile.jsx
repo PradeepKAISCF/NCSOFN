@@ -41,9 +41,9 @@ const UserProfile = ({ slideIn, handleSlideIn }) => {
                   {moment(currentProfile?.joinedOn).fromNow()}
                 </p>
                 <p>
-                  {currentProfile.subscrption=== 0 ?(
+                  {currentProfile.subscription=== 0 ?(
                     <>Subscribed to Free Tier</>
-                  ): currentProfile.subscrption === 1?(
+                  ): currentProfile.subscription === 1?(
                     <>Subscribed to Silver tier</>
                   ):
                   <>Subscribed to Golden Tier</>
