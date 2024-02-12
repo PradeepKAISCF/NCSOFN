@@ -33,11 +33,11 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
               name:"STARTUP_PROJECTS",
               description:"for testing purpose",
               handler: function(response){
-                if(plan === 2) {
+                if(plan === 1) {
                   alert("Payment Successfull Subscribed To Silver Plan");
                   dispatch(subscription(User?.result?._id,1))
                 }
-                if(plan === 3 ) {
+                if(plan === 2 ) {
                   alert("Payment Successfull Subscribed To Gold Plan");
                   dispatch(subscription(User?.result?._id,2))
                 }
