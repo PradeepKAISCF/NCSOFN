@@ -23,6 +23,7 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
         if(plan === 2) amount = 1000
         if(plan === 0){
           alert("Subrcibed To Free Plan");
+            dispatch(subscription(User?.result?._id,0))
           }else{
             var options = {
               key: "rzp_test_7kuHOXieqQI1Go",
@@ -32,9 +33,6 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
               name:"STARTUP_PROJECTS",
               description:"for testing purpose",
               handler: function(response){
-                if(plan === 1){
-                  alert("Payment Successfull Now your a free User");
-                }
                 if(plan === 2) {
                   alert("Payment Successfull Subscribed To Silver Plan");
                   dispatch(subscription(User?.result?._id,1))
