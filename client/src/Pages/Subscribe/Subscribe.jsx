@@ -11,6 +11,8 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
     const User = useSelector((state) => state.currentUserReducer);
     const dispatch = useDispatch();
     console.log(User)
+    console.log(User.result.subscription)
+    
 
     const pay = (e)=>{
         if(User.result.subscription === plan){
