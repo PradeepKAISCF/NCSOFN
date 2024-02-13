@@ -20,7 +20,7 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
     
 
     const pay = (e)=>{
-        if(User.result.subscription === plan){
+        if(v[0].subscription === plan){
           alert('Your already subscribed to the same plan')
         }else{
           e.preventDefault();
