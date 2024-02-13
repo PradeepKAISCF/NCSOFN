@@ -9,7 +9,10 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
 
     const [plan,setplan] = useState(null);
     const User = useSelector((state) => state.currentUserReducer);
-    const cUser = useSelector((state) => state.UserReducer);
+    const cUser = useSelector((state) => state.usersReducer);
+    const v = cUser.filter((state) =>
+        state._id === User.result._id
+      );
     const dispatch = useDispatch();
     console.log(User)
     console.log(User.result.subscription)
