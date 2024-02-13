@@ -1,4 +1,5 @@
 import * as api from "../api";
+import { setCurrentUser } from "./currentUser";
 
 export const fetchAllUsers = () => async (dispatch) => {
   try {
@@ -21,6 +22,8 @@ export const subscription = (id, value) => async (dispatch) => {
   try {
     const { data } = await api.subscribe(id, value);
     dispatch({ type: "UPDATE_CURRENT_USER", payload: data });
+    dispatch(setCurrentUser({result:data}));
+    
   } catch (error) {
     console.log(error);
   }
