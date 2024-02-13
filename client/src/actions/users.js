@@ -22,7 +22,7 @@ export const subscription = (id, value) => async (dispatch) => {
   try {
     const { data } = await api.subscribe(id, value);
     dispatch({ type: "UPDATE_CURRENT_USER", payload: data });
-    dispatch({ type: "AUTH", payload: {result:data} });
+    //dispatch({ type: "AUTH", payload: {result:data} });
     dispatch(setCurrentUser({result:data}));
     
   } catch (error) {
