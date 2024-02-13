@@ -15,7 +15,7 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
       );
     const dispatch = useDispatch();
     console.log(User)
-    console.log(v)
+    console.log(v[0].subscription)
     console.log(User.result.subscription)
     
 
