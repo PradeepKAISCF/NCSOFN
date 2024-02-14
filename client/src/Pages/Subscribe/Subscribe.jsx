@@ -10,21 +10,19 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
     const [plan,setplan] = useState(null);
     const User = useSelector((state) => state.currentUserReducer);
     const cUser = useSelector((state) => state.usersReducer);
-    const v = cUser.filter((state) =>
-        state._id === User.result._id
-      );
     const dispatch = useDispatch();
-    console.log(User)
-    console.log(v[0].subscription)
-    console.log(User.result.subscription)
     
 
     const pay = (e)=>{
-        if(v[0].subscription === plan){
-          alert('Your already subscribed to the same plan')
-        }else{
+        
           e.preventDefault();
         if(User){
+          const v = cUser.filter((state) =>
+        state._id === User.result._id
+      );
+          if(v[0].subscription === plan){
+            alert('Your already subscribed to the same plan')
+          }else{
         let amount;
         if(plan === 1) amount = 100
         if(plan === 2) amount = 1000
@@ -65,9 +63,9 @@ const Subscribe = ({ slideIn, handleSlideIn }) => {
             var pay = new window.Razorpay(options);
             pay.open();
           }
+        }
         }else{
           alert("Login to subscribe")
-        }
         }
         
       }
