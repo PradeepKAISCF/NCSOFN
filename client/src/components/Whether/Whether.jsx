@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/* import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import sun from '../../assets/sun.png'
@@ -71,3 +71,30 @@ const Whether = () => {
 
 export default Whether
 
+ */
+
+import React, { useState, useEffect } from 'react';
+
+const Whether = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // Update every 1000 milliseconds (1 second)
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array means this effect runs once when the component mounts
+
+  //console.log(currentTime.getHours())
+  return (
+    <div style={{marginTop:'50px',backgroundColor:'#edeff0',}}>
+      {/*<h1>Current Time:</h1>
+      <p>{currentTime.toLocaleTimeString()}</p>
+      */}
+    </div>
+  );
+};
+
+export default Whether;

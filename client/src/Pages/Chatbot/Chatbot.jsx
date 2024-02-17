@@ -129,10 +129,11 @@ const Chatbot = ({ slideIn, handleSlideIn }) => {
         <div className="App">
           <div style={{ position:"relative",  }}>
             <MainContainer style={{backgroundColor: 'yellow'}}>
-              <ChatContainer>       
+              <ChatContainer >       
                 <MessageList 
                   scrollBehavior="smooth" 
                   typingIndicator={isTyping ? <TypingIndicator content="Gome is typing" /> : null}
+                  style={{backgroundColor:'lightgrey'}}
                 >
                   {messages.map((message, i) => {
                     console.log(message)

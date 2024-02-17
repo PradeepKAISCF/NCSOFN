@@ -29,9 +29,34 @@ function App() {
       setSlideIn((state) => !state);
     }
   };
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // Update every 1000 milliseconds (1 second)
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const getBackgroundColor = () => {
+    const currentHour = currentTime.getHours();
+
+    // Adjust colors based on the time of day
+    if (currentHour >= 5 && currentHour < 10) {
+      return '#91a4ab'; // Morning light color
+    } else if (currentHour >= 10 && currentHour < 16) {
+      return '#b7a668'; // Afternoon color
+    }else if(currentHour >= 10 && currentHour < 16){
+      return '#c56a4c'
+    } else {
+      return '#8a8787'; // Night darker color
+    }
+  };
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:getBackgroundColor()}}>
       <Router>
         <Navbar handleSlideIn={handleSlideIn} />
         <Whether/>

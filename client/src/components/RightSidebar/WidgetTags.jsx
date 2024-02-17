@@ -18,11 +18,11 @@ const WidgetTags = () => {
     "python",
     "reactjs",
   ];
-
+  
   return (
-    <div className="widget-tags">
-      <h4>Watched tags</h4>
-      <div className="widget-tags-div">
+    <div className="widget-tags" >
+      <h4 style={{backgroundColor:'#fbf3d5'}}>Watched tags</h4>
+      <div className="widget-tags-div" style={{backgroundColor:'#fdf7e2'}}>
         {tags.map((tag) => (
           <p key={tag}>{tag}</p>
         ))}
